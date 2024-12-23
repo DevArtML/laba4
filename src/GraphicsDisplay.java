@@ -19,7 +19,7 @@ public class GraphicsDisplay extends JPanel {
     public GraphicsDisplay() {
         setBackground(Color.WHITE);
 
-        graphicsStroke = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[] {8, 2, 2, 2, 4, 2, 2, 2, 8}, 0.0f);
+        graphicsStroke = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, null, 0.0f);
         axisStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
         markerStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
         axisFont = new Font("Serif", Font.BOLD, 36);
@@ -205,6 +205,11 @@ public class GraphicsDisplay extends JPanel {
         if (minY <= 0.0 && maxY >= 0.0) {
             Point2D.Double labelPos = xyToPoint(maxX, 0, offsetX, offsetY); // Конец оси X
             canvas.drawString("x", (float) labelPos.getX() - 20, (float) labelPos.getY() + 30);
+        }
+
+        if (minX <= 0.0 && maxX >= 0.0 && minY <= 0.0 && maxY >= 0.0) {
+            Point2D.Double center = xyToPoint(0, 0, offsetX, offsetY);
+            canvas.drawString("0", (float) center.getX() + 5, (float) center.getY() - 5);
         }
     }
 
